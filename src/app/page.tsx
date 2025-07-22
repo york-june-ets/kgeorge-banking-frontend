@@ -3,93 +3,27 @@ import styles from "./page.module.css";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+     <div className={styles.homepage}>
+        <div className={styles.slide1}>
+          <div className={styles.header}>
+            <div className={styles.logo}>
+              <img className={styles.logo_img} src="/pb_logo_icon.png" alt="piggy bank logo"></img>
+              <h1 className={styles.logo_text}><span className={styles.piggy}>piggy</span><span className={styles.bank}>bank</span></h1>
+            </div>
+            <div className={styles.buttons}>
+              <button className={styles.loginButton}>Login</button>
+              <button className={styles.signupButton}>Sign Up</button>
+            </div>
+          </div>
+          <div className={styles.main_content}>
+            <div className={styles.intro_text}>
+              <h1 className={styles.title}>Oink if You Love Saving!</h1>
+              <p className={styles.body}>With Piggy Bank, each savings goal is brought to life through your very own piggie. Watch them grow happier 
+                                        as you save more — from grumpy to grinning. Your finances, your goals, your herd of happy little pigs.</p>
+            </div>
+            <img className={styles.piggy_bank_lady} src="/lady_holding_piggy_bank.png"></img>
+          </div>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+     </div>
   );
 }
