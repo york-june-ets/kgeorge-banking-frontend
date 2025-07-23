@@ -5,13 +5,11 @@ import styles from "@/styles/login.module.css"
 import { Overlay } from "@/components/Overlay"
 import { LoginRequest } from "@/types/LoginRequest"
 import { fetchAuthenticateCustomer, fetchCreateCustomer } from "@/lib/customer"
-import { useRouter } from "next/navigation"
 
 export default function LoginModal() {
     const [error, setError] = useState<String>("")
     const [loading, setLoading] = useState<boolean>(false)
     const [loginRequest, setLoginRequest] = useState<LoginRequest>({email: "", password: ""})
-    const router = useRouter()
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
         setError("")
@@ -29,8 +27,7 @@ export default function LoginModal() {
             try {
                 const response = await fetchAuthenticateCustomer(loginRequest)
                 if (response.ok) {
-                    // window.location.href="/dashboard"
-                    router.push('/dashboard')
+                    window.location.href="/dashboard"
                 } 
                 else {
                     const errorResponse = await response.json()
