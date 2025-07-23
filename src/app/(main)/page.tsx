@@ -24,8 +24,8 @@ export default function Homepage() {
               <h1 className="logo_text"><span className="pink">piggy</span><span className="grey">bank</span></h1>
             </div>
             <div className={styles.buttons}>
-              <button className={styles.loginButton} onClick={openLogin}>Login</button>
-              <button className={styles.signupButton} onClick={openSignup}>Sign Up</button>
+              <button className="buttonPrimary" onClick={openLogin}>Login</button>
+              <button className="buttonSecondary" onClick={openSignup}>Sign Up</button>
             </div>
           </div>
           <div className={styles.main_content}>
