@@ -2,11 +2,20 @@
 
 import { Overlay } from "@/components/Overlay";
 import styles from '@/styles/signup.module.css'
+import { SignupRequest } from "@/types/SignupRequest";
 import { useState } from "react";
-
 
 export default function SignupModal() {
     const [error, setError] = useState<Error | null>(null)
+    const [signupRequest, setSignupRequest] = useState<SignupRequest>({firstName: "", lastName: "", email: "", password: "", confirmPassword: "", phoneNumber: ""})
+
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+        const {name, value} = event.target
+        setSignupRequest(prev => ({
+            ...prev,
+            [name]: value
+        }))
+    }
 
     return (
         <>

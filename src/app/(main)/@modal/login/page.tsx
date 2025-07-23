@@ -3,12 +3,19 @@
 import { useState } from "react"
 import styles from "@/styles/login.module.css"
 import { Overlay } from "@/components/Overlay"
-import { useRouter } from "next/dist/client/components/navigation"
-
+import { LoginRequest } from "@/types/LoginRequest"
 
 export default function LoginModal() {
     const [error, setError] = useState<Error | null>(null)
-    const router = useRouter();
+    const [loginRequest, setLoginRequest] = useState<LoginRequest>({email: "", password: ""})
+
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+        const {name, value} = event.target
+        setLoginRequest(prev => ({
+            ...prev,
+            [name]: value
+        }))
+    }
 
     return (
         <>
@@ -19,8 +26,8 @@ export default function LoginModal() {
                     <h1><span className="pink">log</span><span className="grey">in</span></h1>
                 </div>
                 <form className={styles.form}>
-                    <input type="email" name="email" placeholder="Email"></input>
-                    <input type="password" name="password" placeholder="Password"></input>
+                    <input type="email" name="email" placeholder="Email" value={loginRequest.email} onChange={handleChange} required></input>
+                    <input type="password" name="password" placeholder="Password" value={loginRequest.password} onChange={handleChange} required></input>
                     <button className="buttonPrimary" type="submit">Login</button>
                     {error && <p>{error.message}</p>}
                 </form>
