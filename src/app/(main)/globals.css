@@ -1,0 +1,15 @@
+.logo_img {
+    width: 80px;
+   
+}
+.pink {
+    color: rgb(243, 91, 170);
+}
+.grey {
+    color: rgba(50, 50, 50, 0.869);
+}
+.buttons {
+    display: flex;
+    flex-direction:row;
+    gap: 10px;
+}

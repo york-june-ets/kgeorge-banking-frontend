@@ -1,22 +1,18 @@
 'use client'
 
 import Image from "next/image";
-import styles from "../styles/homepage.module.css";
+import styles from "@/styles/homepage.module.css"
 import { useEffect, useState } from "react";
-import { Overlay } from "@/components/Overlay";
-import { Login } from "@/components/Login";
-import { Signup } from "@/components/Signup";
+import { useRouter } from "next/navigation";
 
 export default function Homepage() {
-  const [loginIsOpen, setLogin] = useState<boolean>(false)
-  const [signupIsOpen, setSignup] = useState<boolean>(false)
+  const router = useRouter();
 
-  const openLogin = () => {
-    setLogin(true)
+  function openLogin() {
+    router.push('/login');
   }
-
-  const openSignup = () => {
-    setSignup(true)
+  function openSignup() {
+    router.push('/signup');
   }
 
   return (
@@ -24,8 +20,8 @@ export default function Homepage() {
         <div className={styles.slide1}>
           <div className={styles.header}>
             <div className={styles.logo}>
-              <img className={styles.logo_img} src="/pb_logo_icon.png" alt="piggy bank logo"></img>
-              <h1 className={styles.logo_text}><span className={styles.piggy}>piggy</span><span className={styles.bank}>bank</span></h1>
+              <img className="logo_img" src="/pb_logo_icon.png" alt="piggy bank logo"></img>
+              <h1 className="logo_text"><span className="pink">piggy</span><span className="grey">bank</span></h1>
             </div>
             <div className={styles.buttons}>
               <button className={styles.loginButton} onClick={openLogin}>Login</button>
@@ -41,14 +37,6 @@ export default function Homepage() {
             <img className={styles.piggy_bank_lady} src="/lady_holding_piggy_bank.png"></img>
           </div>
         </div>
-        {loginIsOpen && (<>
-              <Overlay close={() => setLogin(false)}/>
-              <Login close={() => setLogin(false)}/>
-        </>)}
-        {signupIsOpen && (<>
-              <Overlay close={() => setSignup(false)}/>
-              <Signup close={() => setSignup(false)}/>
-        </>)}
      </div>
   )
 }
