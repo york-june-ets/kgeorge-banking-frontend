@@ -3,6 +3,5 @@ export type SignupRequest = {
     lastName: string
     email: string
     password: string
-    confirmPassword: string
     phoneNumber: string
 }

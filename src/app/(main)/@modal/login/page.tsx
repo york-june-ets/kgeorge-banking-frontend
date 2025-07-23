@@ -4,9 +4,11 @@ import { useState } from "react"
 import styles from "@/styles/login.module.css"
 import { Overlay } from "@/components/Overlay"
 import { LoginRequest } from "@/types/LoginRequest"
+import { fetchAuthenticateCustomer, fetchCreateCustomer } from "@/lib/customer"
 
 export default function LoginModal() {
-    const [error, setError] = useState<Error | null>(null)
+    const [error, setError] = useState<String>("")
+    const [loading, setLoading] = useState<boolean>(false)
     const [loginRequest, setLoginRequest] = useState<LoginRequest>({email: "", password: ""})
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -17,6 +19,26 @@ export default function LoginModal() {
         }))
     }
 
+    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        setLoading(true)
+        const login = async () => {
+            try {
+                const response = await fetchAuthenticateCustomer(loginRequest)
+                if (response.ok) {
+                    console.log("success")
+                } 
+                else {
+                    setError(response.message)
+                }
+            } catch (err) {
+                setError("An unexpected error occured")
+                console.error(err)
+            }
+        }
+        login()
+        setLoading(false)
+    }
+
     return (
         <>
             <Overlay/>
@@ -25,11 +47,12 @@ export default function LoginModal() {
                     <img className="logo_img" src="/pb_logo_icon.png" alt="piggy bank logo"></img>
                     <h1><span className="pink">log</span><span className="grey">in</span></h1>
                 </div>
-                <form className={styles.form}>
-                    <input type="email" name="email" placeholder="Email" value={loginRequest.email} onChange={handleChange} required></input>
-                    <input type="password" name="password" placeholder="Password" value={loginRequest.password} onChange={handleChange} required></input>
-                    <button className="buttonPrimary" type="submit">Login</button>
-                    {error && <p>{error.message}</p>}
+                {loading && <p>Loading, please wait...</p>}
+                <form className={styles.form} onSubmit={handleSubmit}>
+                    <input type="email" name="email" placeholder="Email" value={loginRequest.email} onChange={handleChange} disabled={loading} required></input>
+                    <input type="password" name="password" placeholder="Password" value={loginRequest.password} onChange={handleChange} disabled={loading} required></input>
+                    <button className="buttonPrimary" type="submit" disabled={loading}>Login</button>
+                    {error && <p>{error}</p>}
                 </form>
                 <p className={styles.linkToSignup}>Don't have an account? <a href='/signup'>Sign up!</a></p>
             </div>
