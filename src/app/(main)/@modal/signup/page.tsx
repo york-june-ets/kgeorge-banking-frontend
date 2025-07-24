@@ -26,7 +26,7 @@ export default function SignupModal() {
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
             setLoading(true)
-            const login = async () => {
+            const submitSignupRequest = async () => {
                 try {
                     const response = await fetchCreateCustomer(signupRequest)
                     if (response.ok) {
@@ -42,7 +42,7 @@ export default function SignupModal() {
                 }
             }
             if (signupRequest.password === confirmPassword.current?.value) {
-                login()
+                submitSignupRequest()
             } else {
                 setError("Passwords do not match")
             }

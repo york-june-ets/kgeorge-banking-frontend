@@ -1,15 +1,17 @@
 'use client'
 
-import { useState } from "react"
+import { useContext, useState } from "react"
 import styles from "@/styles/login.module.css"
 import { Overlay } from "@/components/Overlay"
 import { LoginRequest } from "@/types/LoginRequest"
 import { fetchAuthenticateCustomer, fetchCreateCustomer } from "@/lib/customer"
+import { AuthContext } from "@/context/AuthContext"
 
 export default function LoginModal() {
     const [error, setError] = useState<String>("")
     const [loading, setLoading] = useState<boolean>(false)
     const [loginRequest, setLoginRequest] = useState<LoginRequest>({email: "", password: ""})
+    const {login} = useContext(AuthContext)
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
         setError("")
@@ -23,11 +25,12 @@ export default function LoginModal() {
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
         setLoading(true)
-        const login = async () => {
+        const submitLoginRequest = async () => {
             try {
                 const response = await fetchAuthenticateCustomer(loginRequest)
                 if (response.ok) {
-                    window.location.href="/dashboard"
+                    const customerData = await response.json()
+                    login(crypto.randomUUID(), customerData)
                 } 
                 else {
                     const errorResponse = await response.json()
@@ -38,7 +41,7 @@ export default function LoginModal() {
                 console.error(err)
             }
         }
-        login()
+        submitLoginRequest()
         setLoading(false)
     }
 
