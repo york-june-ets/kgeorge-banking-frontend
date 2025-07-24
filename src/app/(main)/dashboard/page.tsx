@@ -2,8 +2,12 @@
 
 import { Header } from "@/components/Header"
 import { AuthContext } from "@/context/AuthContext"
-import { useContext, useEffect, useState } from "react"
+import { JSX, useContext, useEffect, useState } from "react"
 import styles from "@/styles/dashboard.module.css"
+import { fetchCustomerAccounts } from "@/lib/customer"
+import { Account } from "@/types/Account"
+import { AccountDetail } from "@/components/AccountDetail"
+import { AccountList } from "@/components/AccountList"
 
 export default function DashboardPage() {
     const {token, currentCustomer, loading} = useContext(AuthContext)
@@ -19,7 +23,7 @@ export default function DashboardPage() {
     return (
         <div className={styles.dashboard}>
             <Header></Header>
-            <h1 className={styles.title}>Welcome back, {currentCustomer.firstName}! We missed you!</h1>
+            <AccountList customerId={currentCustomer!.id}></AccountList>
         </div>
     )
 }

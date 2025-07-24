@@ -12,6 +12,7 @@ export function Header () {
                 <h1 className="logo_text"><span className="pink">piggy</span><span className="grey">bank</span></h1>
             </div>
             <div className="buttons">
+                <a href='/dashboard'>My Piggy Banks</a>
                 <button className="buttonPrimary">Profile</button>
                 <button className="buttonSecondary" onClick={logout}>Logout</button>
             </div>
