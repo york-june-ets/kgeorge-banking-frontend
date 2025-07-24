@@ -18,12 +18,12 @@ export default function Homepage() {
   return (
      <div className={styles.homepage}>
         <div className={styles.slide1}>
-          <div className={styles.header}>
-            <div className={styles.logo}>
+          <div className="header">
+            <div className="horizontal_logo">
               <img className="logo_img" src="/pb_logo_icon.png" alt="piggy bank logo"></img>
               <h1 className="logo_text"><span className="pink">piggy</span><span className="grey">bank</span></h1>
             </div>
-            <div className={styles.buttons}>
+            <div className="buttons">
               <button className="buttonPrimary" onClick={openLogin}>Login</button>
               <button className="buttonSecondary" onClick={openSignup}>Sign Up</button>
             </div>

@@ -3,6 +3,7 @@
 import { Header } from "@/components/Header"
 import { AuthContext } from "@/context/AuthContext"
 import { useContext, useEffect, useState } from "react"
+import styles from "@/styles/dashboard.module.css"
 
 export default function DashboardPage() {
     const {token, currentCustomer, loading} = useContext(AuthContext)
@@ -16,9 +17,9 @@ export default function DashboardPage() {
     if (loading || (!token || !currentCustomer)) {return null}
     
     return (
-        <>
+        <div className={styles.dashboard}>
             <Header></Header>
-            <h1>Dashboard</h1>
-        </>
+            <h1 className={styles.title}>Welcome back, {currentCustomer.firstName}! We missed you!</h1>
+        </div>
     )
 }
